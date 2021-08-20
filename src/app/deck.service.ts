@@ -77,6 +77,10 @@ export class DeckService {
     /*const canvas = document.createElement('canvas');
     canvas.width = deck.ICON_SIZE;
     canvas.height = deck.ICON_SIZE;
+
+    const img = document.createElement('img');
+    img.src = 'IMG URL';
+
     const ctx = canvas.getContext('2d');
     if (!ctx) { return; }
     ctx.font = '24pt Arial';
@@ -84,14 +88,20 @@ export class DeckService {
     ctx.textAlign = 'center';
     ctx.lineWidth = 1;
     ctx.fillText('A', 8, 60, canvas.width * 0.8);
+    setTimeout(() => {
+      ctx.drawImage(img, 0, 0);
+      ctx.save();
+      document.querySelector('body')?.appendChild(img);
 
-    deck.fillKeyCanvas(2, canvas);
+      deck.fillKeyCanvas(2, canvas);
+
+    }, 100);
     console.log('DONE');*/
 
     this.books$.subscribe(books => {
       for (let i = 0; i < books.length; i++) {
         deck.fillKeyColor(i, 40, 60, 100);
-      }
+      };
     });
   }
 

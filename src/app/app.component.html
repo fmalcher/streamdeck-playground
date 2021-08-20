@@ -1,4 +1,9 @@
-<button (click)="request()">Request</button>
+<button (click)="request()" *ngIf="!ds.hasDeck">Request</button>
+
+<ng-container *ngIf="ds.hasDeck">
+    Brightness:
+    <input type="range" min="0" max="100" (input)="setBrightness($event)">
+</ng-container>
 
 <hr>
 

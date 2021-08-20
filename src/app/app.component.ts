@@ -11,7 +11,7 @@ export class AppComponent {
 
   selectedBook$ = this.ds.selectedBook$;
 
-  constructor(private ds: DeckService) {
+  constructor(public ds: DeckService) {
     this.ds.events$.subscribe(e => {
       
     });
@@ -19,5 +19,10 @@ export class AppComponent {
 
   request() {
     this.ds.request();
+  }
+
+  setBrightness(e: Event) {
+    const value = Number((e.target as HTMLInputElement).value);
+    this.ds.setBrightness(value);
   }
 }

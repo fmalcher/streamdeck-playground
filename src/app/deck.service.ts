@@ -37,6 +37,10 @@ export class DeckService {
     filter(book => !!book)
   );
 
+  get hasDeck() {
+    return !!this.deck;
+  }
+
   constructor(private http: HttpClient) {}
 
   request() {
@@ -68,6 +72,8 @@ export class DeckService {
   }
 
   doThingsWithCanvas(deck: StreamDeckWeb) {
+    deck.clearPanel();
+
     /*const canvas = document.createElement('canvas');
     canvas.width = deck.ICON_SIZE;
     canvas.height = deck.ICON_SIZE;
@@ -75,6 +81,7 @@ export class DeckService {
     if (!ctx) { return; }
     ctx.font = '24pt Arial';
     ctx.fillStyle = 'white';
+    ctx.textAlign = 'center';
     ctx.lineWidth = 1;
     ctx.fillText('A', 8, 60, canvas.width * 0.8);
 
@@ -83,7 +90,7 @@ export class DeckService {
 
     this.books$.subscribe(books => {
       for (let i = 0; i < books.length; i++) {
-        deck.fillKeyColor(i, 255, 0, 0);
+        deck.fillKeyColor(i, 40, 60, 100);
       }
     });
   }
@@ -104,6 +111,10 @@ export class DeckService {
     return this.fromDeckEvent(target, eventName).pipe(
       map((keyIndex) => ({ keyIndex, event: eventName }))
     );
+  }
+
+  setBrightness(percent: number) {
+    this.deck?.setBrightness(percent);
   }
 
   loadBooks(): Observable<Book[]> {
